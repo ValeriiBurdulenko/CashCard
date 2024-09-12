@@ -2,6 +2,8 @@ package example.cashcard;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.Objects;
+
 public class CashCard {
     private @Id Long id;
     private Double amount;
@@ -17,5 +19,14 @@ public class CashCard {
 
     public Double getAmount() {
         return amount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CashCard cashCard = (CashCard) o;
+        return Objects.equals(id, cashCard.id) &&
+                Objects.equals(amount, cashCard.amount);
     }
 }
